@@ -10,21 +10,19 @@ import (
 )
 
 func main() {
-	cfg := config.Config{
-		Transport: config.Transport{
-			Host: "",
-			Port: "8080",
-		},
-		Cache: config.Cache{
-			Addr: "localhost:6379",
-		},
+	trCfg := config.Transport{
+		Host: "",
+		Port: "8080",
 	}
 
-	c := cache.NewRedisCache(cfg.Cache)
+	cacheCfg := config.Cache{
+		Addr: "localhost:6379",
+	}
+	c := cache.NewRedisCache(cacheCfg)
 
 	s := service.NewService(c)
 
-	tr := transport.NewTransport(cfg.Transport, s)
+	tr := transport.NewTransport(trCfg, s)
 
 	defer func() {
 		if err := tr.Close(); err != nil {

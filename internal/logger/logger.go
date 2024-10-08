@@ -13,7 +13,10 @@ var (
 
 func GetLogger() *log.Logger {
 	initializer.Do(func() {
-		loggerInstance = log.New(os.Stdout, "service: ", log.Ldate|log.Ltime)
+		loggerInstance = log.New(os.Stdout,
+			"service: ",
+			log.Ldate|log.Ltime,
+		)
 	})
 
 	return loggerInstance

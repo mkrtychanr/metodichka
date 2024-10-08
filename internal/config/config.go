@@ -1,6 +1,11 @@
 package config
 
-type Config struct {
-	Transport Transport
-	Cache     Cache
+type Transport struct {
+	Host string
+	Port string
+}
+
+type Cache struct {
+	Addr     string
+	Password string
 }
